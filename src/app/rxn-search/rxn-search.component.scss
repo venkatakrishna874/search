@@ -1,0 +1,26 @@
+mat-sidenav-container,
+mat-sidenav,
+mat-sidenav-content {
+  height: 100%;
+
+}
+
+.mat-drawer:not(.mat-drawer-side) {
+  box-shadow: none;
+}
+@media (min-width: 721px) {
+  mat-sidenav {
+    background-color: rgba(0, 0, 0, 0.03) !important ;
+  }
+}
+
+mat-sidenav {
+  overflow: auto;
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+}
+mat-sidenav-content {
+  background-color: rgba(0, 0, 0, 0.03) !important ;
+}
+

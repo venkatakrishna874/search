@@ -1,0 +1,9 @@
+<mat-sidenav-container class="rxn-search-container" [hasBackdrop]="mobileQuery.matches ? true : false">
+  <mat-sidenav class="rxn-search-filters" [ngClass]="{'': !mobileQuery.matches, 'm-0': mobileQuery.matches}" [mode]="mobileQuery.matches ? 'over' : 'push'"
+    #sidenav position="end" [(opened)]="opened" (openedChange)="filtersMenuChange()" >
+    <rxn-filters (closeFilters)="sidenav.close()" (filters)="getfilterValues($event)"></rxn-filters>
+  </mat-sidenav>
+  <mat-sidenav-content  class="row ml-0 mt-2 rxn-search-content">
+    <rxn-results (filtersToggle)="sidenav.toggle()" [filters]="filters"></rxn-results>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,124 @@
+<div class="" *ngFor="let ruidData of ruidsData; let i=index">
+  <div *ngIf="loading;else other" class="d-flex justify-content-center">
+    <span class="loading__anim"></span>
+  </div>
+  <div>
+    <mat-divider></mat-divider>
+    <ng-template #other>
+      <div class="row">
+        <div class="col-12">
+          <div class="exp-name" fxLayout="row" fxLayoutAlign="space-around center">
+            <div>
+              <span> Experiment Name: </span>
+              <span *ngIf="ruidData.source=='Internal';else other_content">{{ ruidData.experimentName}}
+                <a class="eLNHyperLink" target="blank" [href]='ruidData.eLNHyperLink'> (eLN)</a>
+              </span>
+              <ng-template #other_content>
+                <span>{{ruidData.experimentName}}
+                  <a class="eLNHyperLink" target="blank" [href]='ruidData.patentLink'> (Patent LInk)</a>
+                </span>
+              </ng-template>
+            </div>
+            <div>
+              <span>Investigator Name: </span>
+              {{ruidData.investigatorName}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showReactionImage">
+        <div class="row">
+          <div class="col-12">
+            <mat-card>
+              <div appRxnToImage [rxn]='ruidData.rxnData' [index]='i' id="{{'imageContainer' + i }}" class="imgContent">
+                <img id="image" class="bordered" />
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <mat-expansion-panel class="m-0 expansion-panel" (opened)="yieldTablePanelOpenState = true" (closed)="yieldTablePanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Yield Table
+          </mat-panel-title>
+          <mat-panel-description>
+            {{yieldTablePanelOpenState ? 'Close' : 'View'}} the yield table
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <div class="row" *ngIf="ruidData.productsWithYields?.length > 0">
+            <div class="col-12">
+              <table mat-table [dataSource]="ruidData.productsWithYields" class="">
+                <ng-container matColumnDef="{{column}}" *ngFor="let column of yieldTableColumns">
+                  <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="yieldTableColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: yieldTableColumns;"></tr>
+              </table>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="expansion-panel" (opened)="stoichiometryTablePanelOpenState = true" (closed)="stoichiometryTablePanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Stoichiometry Table
+          </mat-panel-title>
+          <mat-panel-description>
+            {{stoichiometryTablePanelOpenState ? 'Close' : 'View'}} the stoichiometry table
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <div class="row">
+            <div class="col-12  ">
+              <button mat-raised-button color="primary" class="mr-2" (click)="toggelMaterialData()"> Material data </button>
+              <button mat-raised-button color="primary" (click)="toggelAmoutData()"> Amout data </button>
+              <div class="stoichiometry-table-container">
+                <table mat-table [dataSource]="stoichiometryTableData" class=" stoichiometry-table">
+                  <ng-container matColumnDef="{{column}}" *ngFor="let column of stoichiometryTableColumnsDefined">
+                    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                    <ng-container *ngIf="column === 'Structure'">
+                      <td mat-cell appSmilesToImage [rxn]="element[column]" [index]="i" [index2]="k" class="smiles-image" *matCellDef="let element;let k = index;">
+                        <div id="{{'structure' + i + k}}" class="imgContent2">
+                          <img id="image" class="bordered" />
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container *ngIf="column !== 'Structure'">
+                      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="stoichiometryTableColumnsToDisplay"></tr>
+                  <tr mat-row *matRowDef="let row;  columns: stoichiometryTableColumnsToDisplay;"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="expansion-panel" (opened)="procedurePanelOpenState = true" (closed)="procedurePanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Procedure
+          </mat-panel-title>
+          <mat-panel-description>
+            {{procedurePanelOpenState ? 'Close' : 'Read'}} the procedure
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <div class="row">
+            <div class="col-12">
+              <div [innerHTML]="ruidData.procedure" class="procedure"></div>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </ng-template>
+  </div>
+  <div *ngIf="showReactionImage">
+    <iframe style="visibility:hidden; height:0" src="assets/marvinpack.html" id="marvinjs-iframe" class="sketcher-frame" frameborder="0">
+    </iframe>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+.stoichiometry-table-container {
+  width: 100%;
+  overflow: auto;
+}
+td.smiles-image {
+  -ms-max-width: 125px;
+  max-width: 125px;
+  word-wrap: break-word;
+}
+.smiles-image:hover {
+  background: white;
+  -ms-transform: scale(3, 3);
+  -webkit-transform: scale(3, 3);
+  transform: scale(3, 3);
+}
+td.mat-cell.cdk-column-Name.mat-column-Name.ng-star-inserted {
+  max-width: 200px;
+}
+.exp-name {
+  padding: 12px;
+  background: #fff;
+  color: rgba(0,0,0,.87);
+  box-shadow: none;
+}
+

@@ -1,0 +1,94 @@
+<div class="container search-form">
+  <form [formGroup]="searchForm" autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <mat-form-field appearance="outline" class="search-input">
+            <mat-label>Please draw the Structure</mat-label>
+            <button matTooltip="Draw the Structure" class="draw-btn" mat-button (click)="openMarvinModal()" type="button" matPrefix>
+              <img class="drawing-icon" src="assets/images/drawing-icon.png">
+            </button>
+            <input formControlName="searchInput" type="text" (keyup.enter)="goToResults()" matInput placeholder="Please draw the structure">
+            <button class="filter-btn" type="button" mat-button matTooltip="filters" matSuffix (click)="toggleFilters()">
+              <mat-icon>filter_list</mat-icon>
+            </button>
+          </mat-form-field>
+          <button class="search-btn ml-2" color="primary" mat-raised-button [disabled]="!searchForm.get('searchInput').valid" (click)="goToResults()">
+            Search</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div fxLayout="row" [fxLayoutAlign]="pagination ? 'space-between center': 'center end'" [ngClass]=" pagination ? '': 'mt-3'">
+        <div>
+          <mat-radio-group formControlName="searchType">
+            <mat-radio-button class="ml-2" color="primary" value="SUBSTRUCTURE">Sub structure</mat-radio-button>
+            <mat-radio-button class="ml-2" color="primary" value="SIMILARITY">Similarity</mat-radio-button>
+            <mat-radio-button class="ml-2" color="primary" value="EXACT"> Exact</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div *ngIf="pagination">
+          <mat-paginator class="" #paginator [length]="total" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]="true"
+            [pageIndex]="0" (page)="handlePage($event)">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid">
+  <div class="col-12 rxns-container">
+    <div *ngIf="loading;else other" class="mt-2 d-flex justify-content-center">
+      <span class="loading__anim"></span>
+    </div>
+    <ng-template #other>
+      <div *ngFor="let reaction of reactions; let i=index" class="rxns">
+        <div class="full-details">
+          <mat-card class="p-0 clearfix">
+            <div rxnToImage [rxn]='reaction.highlightedRxnString' [index]='i'>
+              <!-- <a [attr.href]="ruidDetailsPage + reaction.ruid" target="_blank"> -->
+              <div id="{{'imageContainer' + i   }}" class="imgContent   ">
+                <div class="row mt-2 justify-content-center">
+                  <span class="text-center loading-icon">
+                    <span class="loading__anim"></span>
+                  </span>
+                </div>
+                <img id="image" class="bordered" />
+              </div>
+              <!-- </a> -->
+            </div>
+            <div>
+              <label class="d-flex float-left yield">Yield: {{ yields | mapYieldToRuid: reaction.ruid}}</label>
+              <button class="float-right view-details-btn" mat-button (click)="viewDetails(reaction)">
+                <span *ngIf="!reaction.expanded;else close" class="expand-icon">
+                  <i class="material-icons">
+                    expand_more
+                  </i>
+                </span>
+                <ng-template #close>
+                  <span class="expand-icon">
+                    <i class="material-icons">
+                      expand_less
+                    </i>
+                  </span>
+                </ng-template>
+              </button>
+            </div>
+            <div *ngIf="reaction.expanded">
+              <app-ruid-details [ruid]="reaction.ruid" [showReactionImage]="false"></app-ruid-details>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </ng-template>
+    <div class="text-center" *ngIf="total===0 && !loading && !error">
+      <p class="mb-0">No results found.</p>
+      <p>Make sure drawn correctly.</p>
+    </div>
+    <div class="text-center" *ngIf="error && !loading">
+      <p class="mb-0">Something went wrong</p>
+    </div>
+  </div>
+</div>
+<iframe style="visibility:hidden; height:0px" src="assets/marvinpack.html" id="marvinjs-iframe" class="sketcher-frame" frameborder="0">
+</iframe>

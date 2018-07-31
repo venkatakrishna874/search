@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--PLEASE DO NOT MODIFY THIS FILE AND BE AWARE THAT THE FILE CONTAINS CONFIDENTIAL INFORMATION.-->
+<ChemAxon>
+<License>
+<Field Name="Software" Value="Marvin for JavaScript"/>
+<Field Name="License Term" Value="Perpetual"/>
+<Field Name="Licensee" Value="Eli Lilly &amp; Co"/>
+<Field Name="Number of Users" Value="100"/>
+<Field Name="Expiration Date" Value="Never"/>
+<Field Name="Support Expiration Date" Value="2017-11-20"/>
+<Field Name="Comment" Value="null"/>
+<Restriction Name="Server Use" Value="Allowed"/>
+<Signature Value="MC0CFGHWwd69K2w2njGJg6hxA9NAU4iqAhUAjCxqY/yvXdt5mhjDjXPHd3ZGaD4="/>
+</License>
+</ChemAxon>

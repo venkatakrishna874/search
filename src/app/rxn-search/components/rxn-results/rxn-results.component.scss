@@ -1,0 +1,59 @@
+.mat-paginator {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+button.draw-btn.mat-button {
+  position: relative;
+  top: -9px;
+  left: -8px;
+  padding: 0px 0px;
+  min-width: 50px;
+  .drawing-icon {
+    height: 3.05em;
+  }
+}
+button.filter-btn.mat-button {
+  min-width: 28px;
+  padding: 10px 0px;
+  mat-icon {
+    font-size: 27px;
+  }
+}
+button.search-btn.mat-raised-button {
+  position: relative;
+  top: 4px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.yield {
+  position: relative;
+  bottom: -1vh;
+  left: 1vw;
+  height: 0;
+  font-size: 14px;
+}
+div.full-details:focus-within,
+div.full-details:focus,
+div.full-details:hover {
+  border-right: 3px solid #673ab7;
+}
+div.full-details {
+  mat-card.mat-card:last-child {
+    margin-bottom: 0;
+  }
+}
+button.view-details-btn.mat-button {
+  min-width: 58px;
+  span.expand-icon {
+    position: relative;
+    top: 7px;
+  }
+}
+
+div.rxns {
+  margin-bottom: 1.5em;
+}
+.rxns-container > *:last-child {
+  margin-bottom: 0px;
+}

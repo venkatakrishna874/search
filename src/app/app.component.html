@@ -1,0 +1,14 @@
+<app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav position="start">
+    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="app-container">
+    <main class="site-content">
+      <router-outlet></router-outlet>
+    </main>
+    <app-footer class="footer"></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-marvin-modal></app-marvin-modal>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SynthOry</title>
+  <base href="/">
+  <link type="text/css" rel="stylesheet" href="assets/js/lib/rainbow/github.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <script src="assets/js/lib/rainbow/rainbow-custom.min.js"></script>
+  <script src="assets/gui/lib/promise-1.0.0.min.js"></script>
+  <script src="assets/js/marvinjslauncher.js"></script>
+  <script>
+    (function () {
+  if ( typeof window.CustomEvent === "function" ) return false; //If not IE
+
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+   }
+
+  CustomEvent.prototype = window.Event.prototype;
+
+  window.CustomEvent = CustomEvent;
+})();
+  </script>
+</head>
+
+<body>
+  <app-root>loading...</app-root>
+</body>
+
+</html>

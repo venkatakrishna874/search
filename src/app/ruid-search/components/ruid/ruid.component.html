@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="ruidForm">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <mat-form-field appearance="outline" class="mt-2">
+            <mat-label>Please enter RUID</mat-label>
+            <input formControlName="ruid" type="text" autocomplete="off" matInput placeholder="Please enter RUID">
+            <mat-hint></mat-hint>
+            <mat-error></mat-error>
+          </mat-form-field>
+          <button class="search-btn ml-2" color="primary" mat-raised-button [disabled]="!ruidForm.get('ruid').valid" (click)="goToResults()">
+            Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

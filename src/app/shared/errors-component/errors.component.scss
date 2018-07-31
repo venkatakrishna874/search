@@ -1,0 +1,8 @@
+.error-dialog {
+    .modal-body {
+        min-height: calc(23vh - 4px);
+        p {
+            font-size: 1.5em;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.app-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+mat-sidenav-container {
+  height: calc(100% - 65px);
+}
+mat-sidenav {
+  width: 250px;
+  height: 100%;
+}

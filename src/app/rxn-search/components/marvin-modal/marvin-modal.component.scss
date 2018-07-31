@@ -1,0 +1,19 @@
+.dialog {
+  position: relative;
+  top: calc(10vh);
+  border-radius: 10px;
+  .dialog-content {
+    background-color: #f3f0ed;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+

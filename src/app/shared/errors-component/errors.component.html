@@ -1,0 +1,12 @@
+<div class="error-dialog">
+    <h1 class="error-dialog-title text-center" mat-dialog-title>Sorry</h1>
+    <mat-dialog-content>
+        <div class="modal-body">
+            <p class="text-center">{{data.bodytext1}}</p>
+            <p class="text-center">{{data.bodytext2}}</p>
+        </div>
+    </mat-dialog-content>
+    <div class="modal-footer">
+        <button mat-button class="btn btn-secondary" cdkFocusInitial mat-button (click)="onClose()">Close</button>
+    </div>
+</div>
